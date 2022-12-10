@@ -1,0 +1,35 @@
+<div class="col-sm-4">
+    <div style="padding: 10px;">
+        <div class="card" style="width: 18rem;">
+         
+            <img class="card-img-top" src=" {%if x.image%} {{x.image.url}} {%else%} https://asparksys.com/logo-black.png {%endif%}" alt="}">
+            <div class="card-body">
+                <h5 class="card-title">Name: {{name}}</h5>
+                <p class="card-text">Description: {{remarks}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Category: {{ x.category }}</li>
+                
+                <li class="list-group-item">Brand: {{x.brand_name}}</li>
+                
+                
+                
+                <li class="list-group-item">Item Id: {{x.item_id}}</li>
+                {% if x.model_number %}
+                <li class="list-group-item">Model Number: {{x.model_number}}</li>
+                {% else %}
+
+                {% endif %}
+                {% if x.serial_number %}
+                <li class="list-group-item">Serial Number: {{x.serial_number}}</li>
+                {% else %}
+
+                {% endif %}
+            </ul>
+            <div class="card-body">
+                <a href="{% url 'inventory:delete_item' x.id %}" onclick="return confirm('Are you sure you want to delete?')" class="card-link">Delete</a>
+                <a href="{% url 'inventory:update-item' x.id %}" class="card-link">Update</a>
+            </div>
+        </div>
+    </div>
+</div>

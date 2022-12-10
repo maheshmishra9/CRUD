@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Item{% endblock %}
+
+{% block content %}
+<br>
+<nav class="nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link">Item List</a>
+  <a class="flex-sm-fill text-sm-center nav-link" href="/add-item/">Add New Item</a>
+</nav>
+{% if object_list %}
+<div class="container">
+<div class="row">
+{% for x in object_list %}
+
+{% include 'cardh.html' with name=x.name remarks='x.remarks' %}
+{% endfor %}
+</div>
+</div>
+{% include 'pagination.html' %}
+{% else %}
+
+<a class="flex-sm-fill text-sm-center nav-link" href="/add-item/" style="margin-top: 200px;"><button class="btn btn-success"> Add Item</button></a>
+{% endif %}
+
+
+{% endblock %}
+

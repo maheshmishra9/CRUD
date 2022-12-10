@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/">Dashboard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/category-list/">Category <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/brand-list/">Brand <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/item-list/">Item <span class="sr-only"></span></a>
+                </li>
+                <p style="margin-left: 500px; color: white;">Welcome {{user.username}}</p>
+                <a href="/logout/"><button class="btn btn-warning" type="submit" style="margin-left: 20px;">Logout</button></a>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/login/">Login <span class="sr-only"></span></a>
+                </li>
+                {% endif %}
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    {% block content %}
+
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    {% block javascript %}
+    
+    {% endblock %}
+</body>
+
+</html>

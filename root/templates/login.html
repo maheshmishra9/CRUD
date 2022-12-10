@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div style="padding: 30px; margin-right: 300px; margin-left:300px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <h3>Inventory Login</h3>
+                <hr>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-primary">Login as a Admin</button>
+                    {% if error %}
+                    <li style="color: red;">{{error}}</li>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

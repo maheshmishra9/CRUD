@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Brand{% endblock %}
+
+{% block content %}
+<br>
+<nav class="nav nav-pills flex-column flex-sm-row">
+  <a class="flex-sm-fill text-sm-center nav-link">Brand List</a>
+  <a class="flex-sm-fill text-sm-center nav-link" href="/add-brand/">Add New Brand</a>
+</nav>
+{% if object_list %}
+<div class="container">
+  <div class="row">
+    {% for x in object_list %}
+    <div class="col-sm-4">
+      <div style="padding: 10px;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card-header">{{x.name}}</div>
+          <div class="card-body">
+            <!-- <h5 class="card-title">{{x.name}}</h5> -->
+            <p class="card-text">{{x.description}}</p>
+
+          </div>
+        </div>
+        <a href="{% url 'inventory:delete_brand' x.id %}" onclick="return confirm('Are you sure you want to delete?')"
+          class="card-link">Delete</a>
+        <a href="{% url 'inventory:update_brand' x.id %}" class="card-link">Update</a>
+      </div>
+
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% include 'pagination.html' %}
+{% else %}
+
+<a class="flex-sm-fill text-sm-center nav-link" href="/add-brand/" style="margin-top: 200px;"><button
+    class="btn btn-success"> Add Brand</button></a>
+{% endif %}
+
+
+{% endblock %}
